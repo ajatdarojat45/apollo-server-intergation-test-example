@@ -12,9 +12,16 @@ it("returns hello with the provided name", async () => {
 });
 
 it("returns books", async () => {
-  const response = await server.executeOperation({
-    query: "query GetBooks { books { title } }",
-  });
+  const response = await server.executeOperation(
+    {
+      query: "query GetBooks { books { title } }",
+    },
+    {
+      contextValue: {
+        token: "123",
+      },
+    }
+  );
 
   const books = response.body.singleResult.data?.books;
   expect(response.body.singleResult.errors).toBeUndefined();

@@ -26,7 +26,10 @@ const books = [
 
 const resolvers = {
   Query: {
-    books: () => books,
+    books: (_, args, context) => {
+      console.log(context, "<<<<<<");
+      return books;
+    },
   },
 
   Mutation: {
